@@ -22,7 +22,6 @@ Covered Concepts<br>
 Concepts to be covered<br>
       🔳 Outlier Removal<br>
       ⚛️ Multiple comparison of Means<br>
-      💿 CDCR(Composition,Distribution,Comparison,Relationship)<br>
       ^0^ ANOVA<br>
 
 🔠Dataset used: Netflix Movies and TV Shows by Shivam Bansal 🔗https://www.kaggle.com/datasets/shivamb/netflix-shows  <br>
