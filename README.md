@@ -24,5 +24,8 @@ Concepts to be covered<br>
       ⚛️ Multiple comparison of Means<br>
       ^0^ ANOVA<br>
 
+Use voila through pip install voila 
+then type on cli: voila eda.ipynb to get it in your web browser like a scrollable presentation
+
 🔠Dataset used: Netflix Movies and TV Shows by Shivam Bansal 🔗https://www.kaggle.com/datasets/shivamb/netflix-shows  <br>
 📉Dataset representation and visualization: Analytics Vidhya 🔗 https://www.analyticsvidhya.com/blog/2021/04/exploratory-analysis-using-univariate-bivariate-and-multivariate-analysis-techniques/
