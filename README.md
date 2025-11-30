@@ -12,6 +12,7 @@ Includes<br>
       📉Lineplot<br>
       💹Scatterplot<br>
       📦Boxplot<br>
+      📊Streamlit dashboard
 
 Covered Concepts<br>
       🔢 Distribution Analysis<br>
