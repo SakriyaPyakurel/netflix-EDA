@@ -26,7 +26,7 @@ year_filter = st.sidebar.slider(
     "year_added",
     int(df.year_added.min()),
     int(df.year_added.max()),
-    (2010, 2021)
+    (int(df.year_added.min()), int(df.year_added.max()))
 )
 
 # applying the filters to the dataframe 
@@ -41,10 +41,10 @@ fig_1 = px.pie(
     type_count,
     names='type',
     values='count',
-    title="Movies vs TV Shows Distribution"
+    title=f"Movies vs TV Shows Distribution for {genre_filter}" if genre_filter else "Movies vs TV Shows Distribution for all genres"
 )
 
-# Showing percentage labels
+# Show percentage labels
 fig_1.update_traces(textposition='inside', textinfo='percent')
 
 # Showing counts on hover
@@ -53,10 +53,53 @@ fig_1.update_traces(
 ) 
 
 # displaying the pie chart
-st.plotly_chart(fig_1, use_container_width=True)
+st.plotly_chart(fig_1,width='stretch')
 
+# Adding a new column for main genre
+df['main_genre'] = df['listed_in'].str.split(',').str[0].str.strip()
 
+# appliying filters for the bar chart
 
+genre_list = ['All Genres'] + sorted(df['main_genre'].unique())
+genre_filter = st.selectbox("Select Genre", genre_list)
+
+filtered = df[(df['year_added'] >= year_filter[0]) &
+              (df['year_added'] <= year_filter[1])]
+
+if genre_filter != "All Genres":
+    filtered = filtered[filtered['main_genre'] == genre_filter]
+
+grouped = filtered.groupby(['year_added', 'type']).size().reset_index(name='count')
+
+all_years = list(range(year_filter[0], year_filter[1] + 1))
+fig_2 = px.bar(
+    grouped,
+    x="year_added",
+    y="count",
+    color="type",
+    barmode="stack",
+    title=f"Content Added Over the Years for {genre_filter}",
+    category_orders={"year_added": all_years}
+)
+
+fig_2.update_layout(
+    xaxis=dict(tickmode="array", tickvals=all_years)
+)
+
+# displaying the bar chart
+st.plotly_chart(fig_2,width='stretch')
+
+fig_3 = px.line(grouped,x="year_added",
+    y="count",
+    color="type",
+    category_orders={"year_added": all_years})
+
+fig_3.update_layout(
+    xaxis=dict(tickmode="array", tickvals=all_years)
+)
+
+# displaying the histplot
+st.plotly_chart(fig_3,width='stretch')
 
 
 
