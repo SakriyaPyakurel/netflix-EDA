@@ -98,7 +98,7 @@ fig_3.update_layout(
     xaxis=dict(tickmode="array", tickvals=all_years)
 )
 
-# displaying the histplot
+# displaying the linechart
 st.plotly_chart(fig_3,width='stretch')
 
 
